@@ -24,12 +24,12 @@ function wpfEmailCSVexports_mail_form_csv($form_id){
         //find most recent file in /home/master/applications/eit20prod/private_html/form-csv-exports/service-form;
         $files = scandir('/var/www/csv-export-folder/'.$form_id, SCANDIR_SORT_DESCENDING);
         $newest_file = $files[0];
-        //clunky IF statements to deal with different email recipients and subject lines for different forms. Ultimately this should be made a UI option in WP Forms Pro;
+        //clunky IF statements to deal with different email recipients and subject lines for different forms, for sites where you need CSV export for multple forms. Ultimately this should be made a UI option in WP Forms Pro;
         $dir = '/var/www/csv-export-folder/'.$form_id;
-        if($form_id == 2233){
+        if($form_id == 2233){//sample form ID 2233
             wp_mail("someone@yoursite.com", "Custom Subject Line for form 2233", "Attached is the most recent CSV export", "", $dir."/".$newest_file);//attaches most recent file
         }
-        if($form_id == 2225){
+        if($form_id == 2225){//sample form ID 2225
             wp_mail("someoneelse@yoursite.com", "Custom Subject Line for form 2225", "Attached is the most recent CSV export", "", $dir."/".$newest_file);//attaches most recent file
         }
     }
@@ -186,8 +186,6 @@ if(isset($_GET["exportformentries"])){   //runs on cron
         
 
 }
-
-
 
 
 ?>
